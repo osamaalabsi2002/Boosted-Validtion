@@ -8,50 +8,7 @@
     <link href="https://cdn.jsdelivr.net/npm/boosted@5.3.3/dist/css/boosted.min.css" rel="stylesheet" integrity="sha384-laZ3JUZ5Ln2YqhfBvadDpNyBo7w5qmWaRnnXuRwNhJeTEFuSdGbzl4ZGHAEnTozR" crossorigin="anonymous">
 
   </head>
-<script>
-  function validatePassword() {
-    event.preventDefault();
-    const password = document.getElementById("pass").value;
-    
-    const regex = /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
-    const aleartDiv = document.getElementById("aleart");
 
-    localStorage.setItem("pass", password);
-
-    if (regex.test(password)) {
-        aleartDiv.textContent = "Password is valid";
-        aleartDiv.style.color = "green";
-    } else {
-        aleartDiv.textContent = "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one digit, and one special character.";
-        aleartDiv.style.color = "red";
-    }
-}
-function validateEmail() {
-    event.preventDefault();
-    const yourEmail = document.getElementById("email").value;
-    
-const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
-    const aleartDiv = document.getElementById("aleart2");
-
-  
-
-    if (regex.test(yourEmail)) {
-        aleartDiv.textContent = "email is valid";
-        aleartDiv.style.color = "green";
-
-    } else {
-        aleartDiv.textContent = "Pleas enter a valid Emil";
-        aleartDiv.style.color = "red";
-    }
-
-}
-function validall(){
- validateEmail();
- validatePassword();
-
-
-}
-</script>
   <body>
       <div  class=" d-flex flex-row mb-3">
       
@@ -135,7 +92,7 @@ function validall(){
       
   
       <main class="w-50 p-3 ms-5 ">
-        <form method="post"  action="" onsubmit=" validall()">
+        <form method="post"  action="" onsubmit="validall(event)">
           <h1>Sign IN</h1>
   
           <br>
@@ -182,6 +139,61 @@ function validall(){
         
 
       <script src="https://cdn.jsdelivr.net/npm/boosted@5.3.3/dist/js/boosted.bundle.min.js" integrity="sha384-3RoJImQ+Yz4jAyP6xW29kJhqJOE3rdjuu9wkNycjCuDnGAtC/crm79mLcwj1w2o/" crossorigin="anonymous"></script>
-  </body>
+      <script>
+        function validatePassword() {
+          event.preventDefault();
+          var password = document.getElementById("pass").value;
+          
+          const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
+          const aleartDiv = document.getElementById("aleart");
+      
+       
+      
+          if (regex.test(password)) {
+              aleartDiv.textContent = "Password is valid";
+              aleartDiv.style.color = "green";
+              localStorage.setItem("loginPassword", password);
+          } else {
+              aleartDiv.textContent = "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one digit, and one special character.";
+              aleartDiv.style.color = "red";
+          }
+      }
+      function validateEmail() {
+          event.preventDefault();
+          var yourEmail = document.getElementById("email").value;
+          
+      const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+          const aleartDiv = document.getElementById("aleart2");
+      
+        
+      
+          if (regex.test(yourEmail)) {
+              aleartDiv.textContent = "email is valid";
+              aleartDiv.style.color = "green";
+              localStorage.setItem("email", yourEmail);
+      
+          } else {
+              aleartDiv.textContent = "Pleas enter a valid Emil";
+              aleartDiv.style.color = "red";
+          }
+          
+      
+      }
+      
+
+      
+      function validall(){
+       validateEmail();
+       validatePassword();
+       const SAFEYOUREMAIL = localStorage.getItem('loginEmail');
+        const LOGEMAIL = localStorage.getItem('email');
+        const SAFEPASSWORD = localStorage.getItem('pass');
+        const LOGPASSWORD = localStorage.getItem('loginPassword');
+        if (SAFEYOUREMAIL == LOGEMAIL && SAFEPASSWORD==LOGPASSWORD){
+            window.location.href = 'Page.html';
+        } window.location.href = 'Page.html';}
+
+      </script>
+    </body>
 
   </html>
