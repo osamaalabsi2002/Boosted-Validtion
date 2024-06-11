@@ -14,10 +14,11 @@
 
 
 function validatePassword() {
+  
     event.preventDefault();
     const password = document.getElementById("pass").value;
-    
-    const regex = /^(?=.[a-z])(?=.[A-Z])(?=.\d)(?=.[@$!%?&])[A-Za-z\d@$!%?&]{8,}$/;
+   
+    const regex = /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$/;
     const aleartDiv = document.getElementById("aleart");
 
   
@@ -25,6 +26,7 @@ function validatePassword() {
     if (regex.test(password)) {
         aleartDiv.textContent = "Password is valid";
         aleartDiv.style.color = "green";
+        localStorage.setItem("S", password);
     } else {
         aleartDiv.textContent = "Password must be at least 8 characters long, contain at least one uppercase letter, one lowercase letter, one digit, and one special character.";
         aleartDiv.style.color = "red";
@@ -42,7 +44,7 @@ const regex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (regex.test(yourEmail)) {
         aleartDiv.textContent = "email is valid";
         aleartDiv.style.color = "green";
-        localStorage.setItem("email", yourEmail);
+        localStorage.setItem("savedEmail", yourEmail);
     } else {
         aleartDiv.textContent = "Pleas enter a valid Emil";
         aleartDiv.style.color = "red";
@@ -75,13 +77,15 @@ function validateMobile() {
 }
 
 
-
-
+localStorage.setItem("email", yourEmail);
+localStorage.setItem("pass", password);
 
 function validall(){
  validateEmail();
  validatePassword();
  validateMobile();
+
+
 }
 </script>
   <body>
